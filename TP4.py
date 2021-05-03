@@ -3,6 +3,7 @@ import math
 import json
 
 
+
 listDict = []
 toSubstract = 0
 
@@ -10,7 +11,7 @@ nbHosts = int(input("Nombre de hosts (Entre 2 et 65534): "))
 
 if (nbHosts < 2 or nbHosts > 65534):
     print("Veuillez entrer un nombre de hosts valide !")
-
+nbHosts+=2
 
 ipAddr =  ipaddress.IPv4Interface(input("IP du RÉSEAU de départ (192.168.2.0/24): "))
 if ipAddr.is_private != True:
@@ -21,12 +22,7 @@ if ipAddr.is_private != True:
 ExplodedIP = str(ipAddr.network).split("/")
 prefixInit = int(ExplodedIP[1])
 
-if prefixInit >= 8 or prefixInit <= 15 :
-    nextPrefix = 16
-if prefixInit >= 16 or prefixInit <= 23 :
-    nextPrefix = 24
-if prefixInit >= 24 or prefixInit <= 31 :
-    nextPrefix = 32
+nextPrefix = 32
 
 for i in range(33):
     if (math.pow(2, i) == nbHosts):
